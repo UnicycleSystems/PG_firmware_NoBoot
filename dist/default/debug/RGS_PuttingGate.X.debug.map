@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp000076e4.00 \
-  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp000076e4.01 \
-  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp000076e4.02 \
-  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp000076e4.03 \
-  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp000076e4.04 \
+  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp0000a77c.00 \
+  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp0000a77c.01 \
+  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp0000a77c.02 \
+  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp0000a77c.03 \
+  -TC:\\Users\\PETERB~1\\AppData\\Local\\Temp\\tmp0000a77c.04 \
   -p24FJ64GA004 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/PIC24F-GA-GB_DFP/1.10.375/xc16 \
   -o \
@@ -89,13 +89,13 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x530           0x7c8  (1992)
-.text                        0x730              0x1052          0x187b  (6267)
-.dinit                      0x1782                0x6e            0xa5  (165)
-.text                       0x17f0                0xca           0x12f  (303)
-.init.delay32               0x18ba                0x1c            0x2a  (42)
-.text                       0x18d6                0x28            0x3c  (60)
+.text                        0x730              0x100a          0x180f  (6159)
+.dinit                      0x173a                0x6e            0xa5  (165)
+.text                       0x17a8                0xca           0x12f  (303)
+.init.delay32               0x1872                0x1c            0x2a  (42)
+.text                       0x188e                0x28            0x3c  (60)
 
-                 Total "program" memory used (bytes):         0x227d  (8829) 13%
+                 Total "program" memory used (bytes):         0x2211  (8721) 13%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -207,201 +207,205 @@ External Symbols in Program Memory (by address):
                   0x00072a                  __DefaultInterrupt
                   0x00073e                  _LIS2DW12_SetAddress_I2C2
                   0x00074c                  _main
-                  0x000aca                  _CallJetsonBall
-                  0x000ada                  _CallJetsonJob
-                  0x000b6a                  _ChangeLighting
-                  0x000b9c                  _ShutdownProcessTemp
-                  0x000da2                  _LIS2DW12_Init_I2C2
-                  0x000e14                  _LIS2DW12_ReadXYZ_I2C2
-                  0x000e96                  _QuickAcellerometerGrabber
-                  0x000f12                  _PowerDown
-                  0x000fc0                  _I2C2_Initialize
-                  0x000ffa                  _I2C2_ErrorCountGet
-                  0x001044                  _I2C2_MasterWrite
-                  0x001076                  _I2C2_MasterRead
-                  0x0010a8                  _I2C2_MasterTRBInsert
-                  0x001122                  _I2C2_MasterReadTRBBuild
-                  0x001152                  _I2C2_MasterWriteTRBBuild
-                  0x001176                  _I2C2_MasterQueueIsEmpty
-                  0x00118c                  _I2C2_MasterQueueIsFull
-                  0x0011a2                  _I2C1_Initialize
-                  0x0011c4                  _I2C1_ReadPointerSet
-                  0x0011d0                  _I2C1_WritePointerSet
-                  0x0011dc                  _I2C1_ReadPointerGet
-                  0x0011e4                  _I2C1_WritePointerGet
-                  0x0011ec                  _I2C1_SlaveAddressMaskSet
-                  0x0011f8                  _I2C1_SlaveAddressSet
-                  0x001214                  _I2C1_StatusCallback
-                  0x0012de                  _TMR2_Initialize
-                  0x0012fa                  _TMR2_Tasks_32BitOperation
-                  0x00131c                  _TMR2_Period32BitSet
-                  0x001330                  _TMR2_Period32BitGet
-                  0x00134e                  _TMR2_Counter32BitSet
-                  0x001362                  _TMR2_Counter32BitGet
-                  0x001388                  _TMR2_Start
-                  0x001396                  _TMR2_Stop
-                  0x00139e                  _TMR2_GetElapsedThenClear
-                  0x0013b6                  _TMR2_SoftwareCounterGet
-                  0x0013c2                  _TMR2_SoftwareCounterClear
-                  0x0013ce                  _TMR4_Initialize
-                  0x0013ee                  _TMR4_Period32BitSet
-                  0x001402                  _TMR4_Period32BitGet
-                  0x001420                  _TMR4_Counter32BitSet
-                  0x001434                  _TMR4_Counter32BitGet
-                  0x001460                  _TMR4_SetInterruptHandler
-                  0x001470                  _TMR4_Start
-                  0x00147e                  _TMR4_Stop
-                  0x001488                  _TMR4_GetElapsedThenClear
-                  0x0014a0                  _TMR4_SoftwareCounterGet
-                  0x0014ac                  _TMR4_SoftwareCounterClear
-                  0x0014b8                  _TMR1_Initialize
-                  0x0014dc                  _TMR1_Period16BitSet
-                  0x0014ee                  _TMR1_Period16BitGet
-                  0x0014f6                  _TMR1_Counter16BitSet
-                  0x001508                  _TMR1_Counter16BitGet
-                  0x001516                  _TMR1_SetInterruptHandler
-                  0x001526                  _TMR1_Start
-                  0x001536                  _TMR1_Stop
-                  0x001540                  _TMR1_GetElapsedThenClear
-                  0x001558                  _TMR1_SoftwareCounterGet
-                  0x001564                  _TMR1_SoftwareCounterClear
-                  0x001570                  _PIN_MANAGER_Initialize
-                  0x0015ee                  _RestoreDetect
-                  0x001606                  _CN_SetInterruptHandler
-                  0x001616                  _CN_SetIOCInterruptHandler
-                  0x001622                  _TMR3_Initialize
-                  0x001638                  _TMR3_Tasks_16BitOperation
-                  0x00165a                  _TMR3_Period16BitSet
-                  0x00166c                  _TMR3_Period16BitGet
-                  0x001674                  _TMR3_Counter16BitSet
-                  0x001686                  _TMR3_Counter16BitGet
-                  0x00168e                  _TMR3_Start
-                  0x00169c                  _TMR3_Stop
-                  0x0016a4                  _TMR3_GetElapsedThenClear
-                  0x0016bc                  _TMR3_SoftwareCounterGet
-                  0x0016c8                  _TMR3_SoftwareCounterClear
-                  0x0016d4                  _FrontAlignLaser_Initialize
-                  0x0016f2                  _FrontAlignLaser_Tasks
-                  0x001704                  _FrontAlignLaser_Start
-                  0x00171e                  _FrontAlignLaser_Stop
-                  0x00172c                  _FrontAlignLaser_SecondaryValueSet
-                  0x001738                  _FrontAlignLaser_PrimaryValueSet
-                  0x001744                  _FrontAlignLaser_IsCompareCycleComplete
-                  0x00175c                  _FrontAlignLaser_FaultStatusGet
-                  0x0017f0                  _ISR_CN_Dummy
-                  0x0017f8                  _ISR_CN_FrontSensor
-                  0x00181a                  _ISR_CN_RearSensor
-                  0x00183e                  _ISR_CN_WakeUp
-                  0x00184a                  _INTERRUPT_Initialize
-                  0x00188c                  _CLOCK_Initialize
-                  0x0018ba                  ___delay32
-                  0x0018d6                  _SYSTEM_Initialize
-                  0x0018ee                  _where_was_i
+                  0x0009c6                  _CallJetsonBall
+                  0x0009d6                  _CallJetsonJob
+                  0x000a66                  _ChangeLighting
+                  0x000a98                  _ShutdownProcessTemp
+                  0x000c9e                  _LIS2DW12_Init_I2C2
+                  0x000d10                  _LIS2DW12_ReadXYZ_I2C2
+                  0x000d92                  _QuickAcellerometerGrabber
+                  0x000e0e                  _PowerDown
+                  0x000e22                  _PowerButton
+                  0x000eaa                  _POST_Routine
+                  0x000f78                  _I2C2_Initialize
+                  0x000fb2                  _I2C2_ErrorCountGet
+                  0x000ffc                  _I2C2_MasterWrite
+                  0x00102e                  _I2C2_MasterRead
+                  0x001060                  _I2C2_MasterTRBInsert
+                  0x0010da                  _I2C2_MasterReadTRBBuild
+                  0x00110a                  _I2C2_MasterWriteTRBBuild
+                  0x00112e                  _I2C2_MasterQueueIsEmpty
+                  0x001144                  _I2C2_MasterQueueIsFull
+                  0x00115a                  _I2C1_Initialize
+                  0x00117c                  _I2C1_ReadPointerSet
+                  0x001188                  _I2C1_WritePointerSet
+                  0x001194                  _I2C1_ReadPointerGet
+                  0x00119c                  _I2C1_WritePointerGet
+                  0x0011a4                  _I2C1_SlaveAddressMaskSet
+                  0x0011b0                  _I2C1_SlaveAddressSet
+                  0x0011cc                  _I2C1_StatusCallback
+                  0x001296                  _TMR2_Initialize
+                  0x0012b2                  _TMR2_Tasks_32BitOperation
+                  0x0012d4                  _TMR2_Period32BitSet
+                  0x0012e8                  _TMR2_Period32BitGet
+                  0x001306                  _TMR2_Counter32BitSet
+                  0x00131a                  _TMR2_Counter32BitGet
+                  0x001340                  _TMR2_Start
+                  0x00134e                  _TMR2_Stop
+                  0x001356                  _TMR2_GetElapsedThenClear
+                  0x00136e                  _TMR2_SoftwareCounterGet
+                  0x00137a                  _TMR2_SoftwareCounterClear
+                  0x001386                  _TMR4_Initialize
+                  0x0013a6                  _TMR4_Period32BitSet
+                  0x0013ba                  _TMR4_Period32BitGet
+                  0x0013d8                  _TMR4_Counter32BitSet
+                  0x0013ec                  _TMR4_Counter32BitGet
+                  0x001418                  _TMR4_SetInterruptHandler
+                  0x001428                  _TMR4_Start
+                  0x001436                  _TMR4_Stop
+                  0x001440                  _TMR4_GetElapsedThenClear
+                  0x001458                  _TMR4_SoftwareCounterGet
+                  0x001464                  _TMR4_SoftwareCounterClear
+                  0x001470                  _TMR1_Initialize
+                  0x001494                  _TMR1_Period16BitSet
+                  0x0014a6                  _TMR1_Period16BitGet
+                  0x0014ae                  _TMR1_Counter16BitSet
+                  0x0014c0                  _TMR1_Counter16BitGet
+                  0x0014ce                  _TMR1_SetInterruptHandler
+                  0x0014de                  _TMR1_Start
+                  0x0014ee                  _TMR1_Stop
+                  0x0014f8                  _TMR1_GetElapsedThenClear
+                  0x001510                  _TMR1_SoftwareCounterGet
+                  0x00151c                  _TMR1_SoftwareCounterClear
+                  0x001528                  _PIN_MANAGER_Initialize
+                  0x0015a6                  _RestoreDetect
+                  0x0015be                  _CN_SetInterruptHandler
+                  0x0015ce                  _CN_SetIOCInterruptHandler
+                  0x0015da                  _TMR3_Initialize
+                  0x0015f0                  _TMR3_Tasks_16BitOperation
+                  0x001612                  _TMR3_Period16BitSet
+                  0x001624                  _TMR3_Period16BitGet
+                  0x00162c                  _TMR3_Counter16BitSet
+                  0x00163e                  _TMR3_Counter16BitGet
+                  0x001646                  _TMR3_Start
+                  0x001654                  _TMR3_Stop
+                  0x00165c                  _TMR3_GetElapsedThenClear
+                  0x001674                  _TMR3_SoftwareCounterGet
+                  0x001680                  _TMR3_SoftwareCounterClear
+                  0x00168c                  _FrontAlignLaser_Initialize
+                  0x0016aa                  _FrontAlignLaser_Tasks
+                  0x0016bc                  _FrontAlignLaser_Start
+                  0x0016d6                  _FrontAlignLaser_Stop
+                  0x0016e4                  _FrontAlignLaser_SecondaryValueSet
+                  0x0016f0                  _FrontAlignLaser_PrimaryValueSet
+                  0x0016fc                  _FrontAlignLaser_IsCompareCycleComplete
+                  0x001714                  _FrontAlignLaser_FaultStatusGet
+                  0x0017a8                  _ISR_CN_Dummy
+                  0x0017b0                  _ISR_CN_FrontSensor
+                  0x0017d2                  _ISR_CN_RearSensor
+                  0x0017f6                  _ISR_CN_WakeUp
+                  0x001802                  _INTERRUPT_Initialize
+                  0x001844                  _CLOCK_Initialize
+                  0x001872                  ___delay32
+                  0x00188e                  _SYSTEM_Initialize
+                  0x0018a6                  _where_was_i
 
 External Symbols in Program Memory (by name):
 
-                  0x00188c                  _CLOCK_Initialize
-                  0x001616                  _CN_SetIOCInterruptHandler
-                  0x001606                  _CN_SetInterruptHandler
-                  0x000aca                  _CallJetsonBall
-                  0x000ada                  _CallJetsonJob
-                  0x000b6a                  _ChangeLighting
-                  0x00175c                  _FrontAlignLaser_FaultStatusGet
-                  0x0016d4                  _FrontAlignLaser_Initialize
-                  0x001744                  _FrontAlignLaser_IsCompareCycleComplete
-                  0x001738                  _FrontAlignLaser_PrimaryValueSet
-                  0x00172c                  _FrontAlignLaser_SecondaryValueSet
-                  0x001704                  _FrontAlignLaser_Start
-                  0x00171e                  _FrontAlignLaser_Stop
-                  0x0016f2                  _FrontAlignLaser_Tasks
-                  0x0011a2                  _I2C1_Initialize
-                  0x0011dc                  _I2C1_ReadPointerGet
-                  0x0011c4                  _I2C1_ReadPointerSet
-                  0x0011ec                  _I2C1_SlaveAddressMaskSet
-                  0x0011f8                  _I2C1_SlaveAddressSet
-                  0x001214                  _I2C1_StatusCallback
-                  0x0011e4                  _I2C1_WritePointerGet
-                  0x0011d0                  _I2C1_WritePointerSet
-                  0x000ffa                  _I2C2_ErrorCountGet
-                  0x000fc0                  _I2C2_Initialize
-                  0x001176                  _I2C2_MasterQueueIsEmpty
-                  0x00118c                  _I2C2_MasterQueueIsFull
-                  0x001076                  _I2C2_MasterRead
-                  0x001122                  _I2C2_MasterReadTRBBuild
-                  0x0010a8                  _I2C2_MasterTRBInsert
-                  0x001044                  _I2C2_MasterWrite
-                  0x001152                  _I2C2_MasterWriteTRBBuild
-                  0x00184a                  _INTERRUPT_Initialize
-                  0x0017f0                  _ISR_CN_Dummy
-                  0x0017f8                  _ISR_CN_FrontSensor
-                  0x00181a                  _ISR_CN_RearSensor
-                  0x00183e                  _ISR_CN_WakeUp
-                  0x000da2                  _LIS2DW12_Init_I2C2
-                  0x000e14                  _LIS2DW12_ReadXYZ_I2C2
+                  0x001844                  _CLOCK_Initialize
+                  0x0015ce                  _CN_SetIOCInterruptHandler
+                  0x0015be                  _CN_SetInterruptHandler
+                  0x0009c6                  _CallJetsonBall
+                  0x0009d6                  _CallJetsonJob
+                  0x000a66                  _ChangeLighting
+                  0x001714                  _FrontAlignLaser_FaultStatusGet
+                  0x00168c                  _FrontAlignLaser_Initialize
+                  0x0016fc                  _FrontAlignLaser_IsCompareCycleComplete
+                  0x0016f0                  _FrontAlignLaser_PrimaryValueSet
+                  0x0016e4                  _FrontAlignLaser_SecondaryValueSet
+                  0x0016bc                  _FrontAlignLaser_Start
+                  0x0016d6                  _FrontAlignLaser_Stop
+                  0x0016aa                  _FrontAlignLaser_Tasks
+                  0x00115a                  _I2C1_Initialize
+                  0x001194                  _I2C1_ReadPointerGet
+                  0x00117c                  _I2C1_ReadPointerSet
+                  0x0011a4                  _I2C1_SlaveAddressMaskSet
+                  0x0011b0                  _I2C1_SlaveAddressSet
+                  0x0011cc                  _I2C1_StatusCallback
+                  0x00119c                  _I2C1_WritePointerGet
+                  0x001188                  _I2C1_WritePointerSet
+                  0x000fb2                  _I2C2_ErrorCountGet
+                  0x000f78                  _I2C2_Initialize
+                  0x00112e                  _I2C2_MasterQueueIsEmpty
+                  0x001144                  _I2C2_MasterQueueIsFull
+                  0x00102e                  _I2C2_MasterRead
+                  0x0010da                  _I2C2_MasterReadTRBBuild
+                  0x001060                  _I2C2_MasterTRBInsert
+                  0x000ffc                  _I2C2_MasterWrite
+                  0x00110a                  _I2C2_MasterWriteTRBBuild
+                  0x001802                  _INTERRUPT_Initialize
+                  0x0017a8                  _ISR_CN_Dummy
+                  0x0017b0                  _ISR_CN_FrontSensor
+                  0x0017d2                  _ISR_CN_RearSensor
+                  0x0017f6                  _ISR_CN_WakeUp
+                  0x000c9e                  _LIS2DW12_Init_I2C2
+                  0x000d10                  _LIS2DW12_ReadXYZ_I2C2
                   0x00073e                  _LIS2DW12_SetAddress_I2C2
-                  0x001570                  _PIN_MANAGER_Initialize
-                  0x000f12                  _PowerDown
-                  0x000e96                  _QuickAcellerometerGrabber
-                  0x0015ee                  _RestoreDetect
-                  0x0018d6                  _SYSTEM_Initialize
-                  0x000b9c                  _ShutdownProcessTemp
-                  0x001508                  _TMR1_Counter16BitGet
-                  0x0014f6                  _TMR1_Counter16BitSet
-                  0x001540                  _TMR1_GetElapsedThenClear
-                  0x0014b8                  _TMR1_Initialize
-                  0x0014ee                  _TMR1_Period16BitGet
-                  0x0014dc                  _TMR1_Period16BitSet
-                  0x001516                  _TMR1_SetInterruptHandler
-                  0x001564                  _TMR1_SoftwareCounterClear
-                  0x001558                  _TMR1_SoftwareCounterGet
-                  0x001526                  _TMR1_Start
-                  0x001536                  _TMR1_Stop
-                  0x001362                  _TMR2_Counter32BitGet
-                  0x00134e                  _TMR2_Counter32BitSet
-                  0x00139e                  _TMR2_GetElapsedThenClear
-                  0x0012de                  _TMR2_Initialize
-                  0x001330                  _TMR2_Period32BitGet
-                  0x00131c                  _TMR2_Period32BitSet
-                  0x0013c2                  _TMR2_SoftwareCounterClear
-                  0x0013b6                  _TMR2_SoftwareCounterGet
-                  0x001388                  _TMR2_Start
-                  0x001396                  _TMR2_Stop
-                  0x0012fa                  _TMR2_Tasks_32BitOperation
-                  0x001686                  _TMR3_Counter16BitGet
-                  0x001674                  _TMR3_Counter16BitSet
-                  0x0016a4                  _TMR3_GetElapsedThenClear
-                  0x001622                  _TMR3_Initialize
-                  0x00166c                  _TMR3_Period16BitGet
-                  0x00165a                  _TMR3_Period16BitSet
-                  0x0016c8                  _TMR3_SoftwareCounterClear
-                  0x0016bc                  _TMR3_SoftwareCounterGet
-                  0x00168e                  _TMR3_Start
-                  0x00169c                  _TMR3_Stop
-                  0x001638                  _TMR3_Tasks_16BitOperation
-                  0x001434                  _TMR4_Counter32BitGet
-                  0x001420                  _TMR4_Counter32BitSet
-                  0x001488                  _TMR4_GetElapsedThenClear
-                  0x0013ce                  _TMR4_Initialize
-                  0x001402                  _TMR4_Period32BitGet
-                  0x0013ee                  _TMR4_Period32BitSet
-                  0x001460                  _TMR4_SetInterruptHandler
-                  0x0014ac                  _TMR4_SoftwareCounterClear
-                  0x0014a0                  _TMR4_SoftwareCounterGet
-                  0x001470                  _TMR4_Start
-                  0x00147e                  _TMR4_Stop
+                  0x001528                  _PIN_MANAGER_Initialize
+                  0x000eaa                  _POST_Routine
+                  0x000e22                  _PowerButton
+                  0x000e0e                  _PowerDown
+                  0x000d92                  _QuickAcellerometerGrabber
+                  0x0015a6                  _RestoreDetect
+                  0x00188e                  _SYSTEM_Initialize
+                  0x000a98                  _ShutdownProcessTemp
+                  0x0014c0                  _TMR1_Counter16BitGet
+                  0x0014ae                  _TMR1_Counter16BitSet
+                  0x0014f8                  _TMR1_GetElapsedThenClear
+                  0x001470                  _TMR1_Initialize
+                  0x0014a6                  _TMR1_Period16BitGet
+                  0x001494                  _TMR1_Period16BitSet
+                  0x0014ce                  _TMR1_SetInterruptHandler
+                  0x00151c                  _TMR1_SoftwareCounterClear
+                  0x001510                  _TMR1_SoftwareCounterGet
+                  0x0014de                  _TMR1_Start
+                  0x0014ee                  _TMR1_Stop
+                  0x00131a                  _TMR2_Counter32BitGet
+                  0x001306                  _TMR2_Counter32BitSet
+                  0x001356                  _TMR2_GetElapsedThenClear
+                  0x001296                  _TMR2_Initialize
+                  0x0012e8                  _TMR2_Period32BitGet
+                  0x0012d4                  _TMR2_Period32BitSet
+                  0x00137a                  _TMR2_SoftwareCounterClear
+                  0x00136e                  _TMR2_SoftwareCounterGet
+                  0x001340                  _TMR2_Start
+                  0x00134e                  _TMR2_Stop
+                  0x0012b2                  _TMR2_Tasks_32BitOperation
+                  0x00163e                  _TMR3_Counter16BitGet
+                  0x00162c                  _TMR3_Counter16BitSet
+                  0x00165c                  _TMR3_GetElapsedThenClear
+                  0x0015da                  _TMR3_Initialize
+                  0x001624                  _TMR3_Period16BitGet
+                  0x001612                  _TMR3_Period16BitSet
+                  0x001680                  _TMR3_SoftwareCounterClear
+                  0x001674                  _TMR3_SoftwareCounterGet
+                  0x001646                  _TMR3_Start
+                  0x001654                  _TMR3_Stop
+                  0x0015f0                  _TMR3_Tasks_16BitOperation
+                  0x0013ec                  _TMR4_Counter32BitGet
+                  0x0013d8                  _TMR4_Counter32BitSet
+                  0x001440                  _TMR4_GetElapsedThenClear
+                  0x001386                  _TMR4_Initialize
+                  0x0013ba                  _TMR4_Period32BitGet
+                  0x0013a6                  _TMR4_Period32BitSet
+                  0x001418                  _TMR4_SetInterruptHandler
+                  0x001464                  _TMR4_SoftwareCounterClear
+                  0x001458                  _TMR4_SoftwareCounterGet
+                  0x001428                  _TMR4_Start
+                  0x001436                  _TMR4_Stop
                   0x0002d4                  __CNInterrupt
                   0x00072a                  __DefaultInterrupt
                   0x00035e                  __MI2C2Interrupt
                   0x0005b0                  __SI2C1Interrupt
                   0x000302                  __T1Interrupt
                   0x000338                  __T5Interrupt
-                  0x0018ba                  ___delay32
+                  0x001872                  ___delay32
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
                   0x00074c                  _main
-                  0x0018ee                  _where_was_i
+                  0x0018a6                  _where_was_i
 
 Memory Configuration
 
@@ -525,7 +529,7 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x8667
+.debug_info       0x000000       0x87e0
  *(.debug_info)
  .debug_info      0x000000         0xdc build/default/debug/mcc_generated_files/where_was_i.o
  .debug_info      0x0000dc       0x114b build/default/debug/RGS_MCC_Copies/pin_manager.o
@@ -539,12 +543,12 @@ __CONFIG1
  .debug_info      0x003c6c        0xeb8 build/default/debug/RGS_MCC_Copies/i2c2.o
  .debug_info      0x004b24        0xb41 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  .debug_info      0x005665        0xdc0 build/default/debug/RGS_MCC_Copies/i2c1.o
- .debug_info      0x006425       0x194a build/default/debug/main.o
- .debug_info      0x007d6f        0x234 build/default/debug/Events.o
- .debug_info      0x007fa3        0x6c4 build/default/debug/pin_CustomISR.o
+ .debug_info      0x006425       0x1ac3 build/default/debug/main.o
+ .debug_info      0x007ee8        0x234 build/default/debug/Events.o
+ .debug_info      0x00811c        0x6c4 build/default/debug/pin_CustomISR.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000       0x11ae
+.debug_abbrev     0x000000       0x11a5
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0x14 build/default/debug/mcc_generated_files/where_was_i.o
  .debug_abbrev    0x000014        0x159 build/default/debug/RGS_MCC_Copies/pin_manager.o
@@ -558,12 +562,12 @@ __CONFIG1
  .debug_abbrev    0x00095d        0x212 build/default/debug/RGS_MCC_Copies/i2c2.o
  .debug_abbrev    0x000b6f         0xb4 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  .debug_abbrev    0x000c23        0x1d0 build/default/debug/RGS_MCC_Copies/i2c1.o
- .debug_abbrev    0x000df3        0x280 build/default/debug/main.o
- .debug_abbrev    0x001073         0x3d build/default/debug/Events.o
- .debug_abbrev    0x0010b0          0x1 build/default/debug/JetsonInterface.o
- .debug_abbrev    0x0010b1         0xfd build/default/debug/pin_CustomISR.o
+ .debug_abbrev    0x000df3        0x277 build/default/debug/main.o
+ .debug_abbrev    0x00106a         0x3d build/default/debug/Events.o
+ .debug_abbrev    0x0010a7          0x1 build/default/debug/JetsonInterface.o
+ .debug_abbrev    0x0010a8         0xfd build/default/debug/pin_CustomISR.o
 
-.debug_line       0x000000       0x13fe
+.debug_line       0x000000       0x13e9
  *(.debug_line)
  .debug_line      0x000000         0x55 build/default/debug/mcc_generated_files/where_was_i.o
  .debug_line      0x000055        0x15d build/default/debug/RGS_MCC_Copies/pin_manager.o
@@ -577,12 +581,12 @@ __CONFIG1
  .debug_line      0x0009d9        0x201 build/default/debug/RGS_MCC_Copies/i2c2.o
  .debug_line      0x000bda        0x126 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  .debug_line      0x000d00        0x227 build/default/debug/RGS_MCC_Copies/i2c1.o
- .debug_line      0x000f27        0x312 build/default/debug/main.o
- .debug_line      0x001239         0x75 build/default/debug/Events.o
- .debug_line      0x0012ae         0x1a build/default/debug/JetsonInterface.o
- .debug_line      0x0012c8        0x136 build/default/debug/pin_CustomISR.o
+ .debug_line      0x000f27        0x2fd build/default/debug/main.o
+ .debug_line      0x001224         0x75 build/default/debug/Events.o
+ .debug_line      0x001299         0x1a build/default/debug/JetsonInterface.o
+ .debug_line      0x0012b3        0x136 build/default/debug/pin_CustomISR.o
 
-.debug_frame      0x000000        0xcca
+.debug_frame      0x000000        0xcfe
  *(.debug_frame)
  .debug_frame     0x000000         0xd4 build/default/debug/RGS_MCC_Copies/pin_manager.o
  .debug_frame     0x0000d4         0x2e build/default/debug/RGS_MCC_Copies/system.o
@@ -595,10 +599,10 @@ __CONFIG1
  .debug_frame     0x0007a6        0x170 build/default/debug/RGS_MCC_Copies/i2c2.o
  .debug_frame     0x000916         0x2e build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  .debug_frame     0x000944        0x122 build/default/debug/RGS_MCC_Copies/i2c1.o
- .debug_frame     0x000a66        0x1e8 build/default/debug/main.o
- .debug_frame     0x000c4e         0x7c build/default/debug/pin_CustomISR.o
+ .debug_frame     0x000a66        0x21c build/default/debug/main.o
+ .debug_frame     0x000c82         0x7c build/default/debug/pin_CustomISR.o
 
-.debug_str        0x000000        0x36c
+.debug_str        0x000000        0x366
  *(.debug_str)
  .debug_str       0x000000         0x6f build/default/debug/RGS_MCC_Copies/pin_manager.o
  .debug_str       0x00006f         0x14 build/default/debug/RGS_MCC_Copies/FrontAlignLaser.o
@@ -609,8 +613,8 @@ __CONFIG1
  .debug_str       0x000119         0x53 build/default/debug/RGS_MCC_Copies/i2c2.o
  .debug_str       0x00016c         0x2e build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  .debug_str       0x00019a         0x86 build/default/debug/RGS_MCC_Copies/i2c1.o
- .debug_str       0x000220         0xf8 build/default/debug/main.o
- .debug_str       0x000318         0x54 build/default/debug/pin_CustomISR.o
+ .debug_str       0x000220         0xf2 build/default/debug/main.o
+ .debug_str       0x000312         0x54 build/default/debug/pin_CustomISR.o
 
 .debug_loc
  *(.debug_loc)
@@ -619,7 +623,7 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0xbf8
+                  0x000000        0xc19
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0xb1 build/default/debug/RGS_MCC_Copies/pin_manager.o
@@ -644,11 +648,11 @@ __CONFIG1
  .debug_pubnames
                   0x000841        0x193 build/default/debug/RGS_MCC_Copies/i2c1.o
  .debug_pubnames
-                  0x0009d4        0x14b build/default/debug/main.o
+                  0x0009d4        0x16c build/default/debug/main.o
  .debug_pubnames
-                  0x000b1f         0x77 build/default/debug/Events.o
+                  0x000b40         0x77 build/default/debug/Events.o
  .debug_pubnames
-                  0x000b96         0x62 build/default/debug/pin_CustomISR.o
+                  0x000bb7         0x62 build/default/debug/pin_CustomISR.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1300,7 +1304,7 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000158        0x9d3
+                  0x000158        0x9f2
  .debug_pubtypes
                   0x000158        0x138 build/default/debug/RGS_MCC_Copies/pin_manager.o
  .debug_pubtypes
@@ -1324,50 +1328,50 @@ LOAD data_init
  .debug_pubtypes
                   0x0007a3         0xdf build/default/debug/RGS_MCC_Copies/i2c1.o
  .debug_pubtypes
-                  0x000882        0x1ed build/default/debug/main.o
+                  0x000882        0x20c build/default/debug/main.o
  .debug_pubtypes
-                  0x000a6f         0x2b build/default/debug/Events.o
+                  0x000a8e         0x2b build/default/debug/Events.o
  .debug_pubtypes
-                  0x000a9a         0x91 build/default/debug/pin_CustomISR.o
+                  0x000ab9         0x91 build/default/debug/pin_CustomISR.o
 
 __c30_signature
-                  0x000b2b         0x6c
+                  0x000b4a         0x6c
  __c30_signature
-                  0x000b2b          0x6 build/default/debug/RGS_MCC_Copies/pin_manager.o
+                  0x000b4a          0x6 build/default/debug/RGS_MCC_Copies/pin_manager.o
  __c30_signature
-                  0x000b31          0x6 build/default/debug/RGS_MCC_Copies/system.o
+                  0x000b50          0x6 build/default/debug/RGS_MCC_Copies/system.o
  __c30_signature
-                  0x000b37          0x6 build/default/debug/RGS_MCC_Copies/FrontAlignLaser.o
+                  0x000b56          0x6 build/default/debug/RGS_MCC_Copies/FrontAlignLaser.o
  __c30_signature
-                  0x000b3d          0x6 build/default/debug/RGS_MCC_Copies/clock.o
+                  0x000b5c          0x6 build/default/debug/RGS_MCC_Copies/clock.o
  __c30_signature
-                  0x000b43          0x6 build/default/debug/RGS_MCC_Copies/tmr1.o
+                  0x000b62          0x6 build/default/debug/RGS_MCC_Copies/tmr1.o
  __c30_signature
-                  0x000b49          0x6 build/default/debug/RGS_MCC_Copies/tmr2.o
+                  0x000b68          0x6 build/default/debug/RGS_MCC_Copies/tmr2.o
  __c30_signature
-                  0x000b4f          0x6 build/default/debug/RGS_MCC_Copies/tmr3.o
+                  0x000b6e          0x6 build/default/debug/RGS_MCC_Copies/tmr3.o
  __c30_signature
-                  0x000b55          0x6 build/default/debug/RGS_MCC_Copies/tmr4.o
+                  0x000b74          0x6 build/default/debug/RGS_MCC_Copies/tmr4.o
  __c30_signature
-                  0x000b5b          0x6 build/default/debug/RGS_MCC_Copies/i2c2.o
+                  0x000b7a          0x6 build/default/debug/RGS_MCC_Copies/i2c2.o
  __c30_signature
-                  0x000b61          0x6 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
+                  0x000b80          0x6 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
  __c30_signature
-                  0x000b67          0x6 build/default/debug/RGS_MCC_Copies/i2c1.o
+                  0x000b86          0x6 build/default/debug/RGS_MCC_Copies/i2c1.o
  __c30_signature
-                  0x000b6d          0x6 build/default/debug/main.o
+                  0x000b8c          0x6 build/default/debug/main.o
  __c30_signature
-                  0x000b73          0x6 build/default/debug/Events.o
+                  0x000b92          0x6 build/default/debug/Events.o
  __c30_signature
-                  0x000b79          0x6 build/default/debug/JetsonInterface.o
+                  0x000b98          0x6 build/default/debug/JetsonInterface.o
  __c30_signature
-                  0x000b7f          0x6 build/default/debug/pin_CustomISR.o
+                  0x000b9e          0x6 build/default/debug/pin_CustomISR.o
  __c30_signature
-                  0x000b85          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x000ba4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000b8b          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x000baa          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x000b91          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32.Meo)
+                  0x000bb0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32.Meo)
 
 .nbss               0x0850         0x54
  .nbss              0x0850         0x1a build/default/debug/main.o
@@ -1461,124 +1465,126 @@ mcc_generated_files/where_was_i.s.scn1
  .ivt._SI2C1Interrupt
                   0x000034          0x2 build/default/debug/RGS_MCC_Copies/i2c1.o
 
-.text             0x000730       0x1052
- .text            0x000730        0x890 build/default/debug/main.o
+.text             0x000730       0x100a
+ .text            0x000730        0x848 build/default/debug/main.o
                   0x00073e                  _LIS2DW12_SetAddress_I2C2
                   0x00074c                  _main
-                  0x000aca                  _CallJetsonBall
-                  0x000ada                  _CallJetsonJob
-                  0x000b6a                  _ChangeLighting
-                  0x000b9c                  _ShutdownProcessTemp
-                  0x000da2                  _LIS2DW12_Init_I2C2
-                  0x000e14                  _LIS2DW12_ReadXYZ_I2C2
-                  0x000e96                  _QuickAcellerometerGrabber
-                  0x000f12                  _PowerDown
- .text            0x000fc0        0x1e2 build/default/debug/RGS_MCC_Copies/i2c2.o
-                  0x000fc0                  _I2C2_Initialize
-                  0x000ffa                  _I2C2_ErrorCountGet
-                  0x001044                  _I2C2_MasterWrite
-                  0x001076                  _I2C2_MasterRead
-                  0x0010a8                  _I2C2_MasterTRBInsert
-                  0x001122                  _I2C2_MasterReadTRBBuild
-                  0x001152                  _I2C2_MasterWriteTRBBuild
-                  0x001176                  _I2C2_MasterQueueIsEmpty
-                  0x00118c                  _I2C2_MasterQueueIsFull
- .text            0x0011a2        0x13c build/default/debug/RGS_MCC_Copies/i2c1.o
-                  0x0011a2                  _I2C1_Initialize
-                  0x0011c4                  _I2C1_ReadPointerSet
-                  0x0011d0                  _I2C1_WritePointerSet
-                  0x0011dc                  _I2C1_ReadPointerGet
-                  0x0011e4                  _I2C1_WritePointerGet
-                  0x0011ec                  _I2C1_SlaveAddressMaskSet
-                  0x0011f8                  _I2C1_SlaveAddressSet
-                  0x001214                  _I2C1_StatusCallback
- .text            0x0012de         0xf0 build/default/debug/RGS_MCC_Copies/tmr2.o
-                  0x0012de                  _TMR2_Initialize
-                  0x0012fa                  _TMR2_Tasks_32BitOperation
-                  0x00131c                  _TMR2_Period32BitSet
-                  0x001330                  _TMR2_Period32BitGet
-                  0x00134e                  _TMR2_Counter32BitSet
-                  0x001362                  _TMR2_Counter32BitGet
-                  0x001388                  _TMR2_Start
-                  0x001396                  _TMR2_Stop
-                  0x00139e                  _TMR2_GetElapsedThenClear
-                  0x0013b6                  _TMR2_SoftwareCounterGet
-                  0x0013c2                  _TMR2_SoftwareCounterClear
- .text            0x0013ce         0xea build/default/debug/RGS_MCC_Copies/tmr4.o
-                  0x0013ce                  _TMR4_Initialize
-                  0x0013ee                  _TMR4_Period32BitSet
-                  0x001402                  _TMR4_Period32BitGet
-                  0x001420                  _TMR4_Counter32BitSet
-                  0x001434                  _TMR4_Counter32BitGet
-                  0x00145a                  _TMR4_CallBack
-                  0x001460                  _TMR4_SetInterruptHandler
-                  0x001470                  _TMR4_Start
-                  0x00147e                  _TMR4_Stop
-                  0x001488                  _TMR4_GetElapsedThenClear
-                  0x0014a0                  _TMR4_SoftwareCounterGet
-                  0x0014ac                  _TMR4_SoftwareCounterClear
- .text            0x0014b8         0xb8 build/default/debug/RGS_MCC_Copies/tmr1.o
-                  0x0014b8                  _TMR1_Initialize
-                  0x0014dc                  _TMR1_Period16BitSet
-                  0x0014ee                  _TMR1_Period16BitGet
-                  0x0014f6                  _TMR1_Counter16BitSet
-                  0x001508                  _TMR1_Counter16BitGet
-                  0x001510                  _TMR1_CallBack
-                  0x001516                  _TMR1_SetInterruptHandler
-                  0x001526                  _TMR1_Start
-                  0x001536                  _TMR1_Stop
-                  0x001540                  _TMR1_GetElapsedThenClear
-                  0x001558                  _TMR1_SoftwareCounterGet
-                  0x001564                  _TMR1_SoftwareCounterClear
- .text            0x001570         0xb2 build/default/debug/RGS_MCC_Copies/pin_manager.o
-                  0x001570                  _PIN_MANAGER_Initialize
-                  0x0015ee                  _RestoreDetect
-                  0x001600                  _CN_CallBack
-                  0x001606                  _CN_SetInterruptHandler
-                  0x001616                  _CN_SetIOCInterruptHandler
- .text            0x001622         0xb2 build/default/debug/RGS_MCC_Copies/tmr3.o
-                  0x001622                  _TMR3_Initialize
-                  0x001638                  _TMR3_Tasks_16BitOperation
-                  0x00165a                  _TMR3_Period16BitSet
-                  0x00166c                  _TMR3_Period16BitGet
-                  0x001674                  _TMR3_Counter16BitSet
-                  0x001686                  _TMR3_Counter16BitGet
-                  0x00168e                  _TMR3_Start
-                  0x00169c                  _TMR3_Stop
-                  0x0016a4                  _TMR3_GetElapsedThenClear
-                  0x0016bc                  _TMR3_SoftwareCounterGet
-                  0x0016c8                  _TMR3_SoftwareCounterClear
- .text            0x0016d4         0xae build/default/debug/RGS_MCC_Copies/FrontAlignLaser.o
-                  0x0016d4                  _FrontAlignLaser_Initialize
-                  0x0016ec                  _FrontAlignLaser_CallBack
-                  0x0016f2                  _FrontAlignLaser_Tasks
-                  0x001704                  _FrontAlignLaser_Start
-                  0x00171e                  _FrontAlignLaser_Stop
-                  0x00172c                  _FrontAlignLaser_SecondaryValueSet
-                  0x001738                  _FrontAlignLaser_PrimaryValueSet
-                  0x001744                  _FrontAlignLaser_IsCompareCycleComplete
-                  0x00175c                  _FrontAlignLaser_FaultStatusGet
+                  0x0009c6                  _CallJetsonBall
+                  0x0009d6                  _CallJetsonJob
+                  0x000a66                  _ChangeLighting
+                  0x000a98                  _ShutdownProcessTemp
+                  0x000c9e                  _LIS2DW12_Init_I2C2
+                  0x000d10                  _LIS2DW12_ReadXYZ_I2C2
+                  0x000d92                  _QuickAcellerometerGrabber
+                  0x000e0e                  _PowerDown
+                  0x000e22                  _PowerButton
+                  0x000eaa                  _POST_Routine
+ .text            0x000f78        0x1e2 build/default/debug/RGS_MCC_Copies/i2c2.o
+                  0x000f78                  _I2C2_Initialize
+                  0x000fb2                  _I2C2_ErrorCountGet
+                  0x000ffc                  _I2C2_MasterWrite
+                  0x00102e                  _I2C2_MasterRead
+                  0x001060                  _I2C2_MasterTRBInsert
+                  0x0010da                  _I2C2_MasterReadTRBBuild
+                  0x00110a                  _I2C2_MasterWriteTRBBuild
+                  0x00112e                  _I2C2_MasterQueueIsEmpty
+                  0x001144                  _I2C2_MasterQueueIsFull
+ .text            0x00115a        0x13c build/default/debug/RGS_MCC_Copies/i2c1.o
+                  0x00115a                  _I2C1_Initialize
+                  0x00117c                  _I2C1_ReadPointerSet
+                  0x001188                  _I2C1_WritePointerSet
+                  0x001194                  _I2C1_ReadPointerGet
+                  0x00119c                  _I2C1_WritePointerGet
+                  0x0011a4                  _I2C1_SlaveAddressMaskSet
+                  0x0011b0                  _I2C1_SlaveAddressSet
+                  0x0011cc                  _I2C1_StatusCallback
+ .text            0x001296         0xf0 build/default/debug/RGS_MCC_Copies/tmr2.o
+                  0x001296                  _TMR2_Initialize
+                  0x0012b2                  _TMR2_Tasks_32BitOperation
+                  0x0012d4                  _TMR2_Period32BitSet
+                  0x0012e8                  _TMR2_Period32BitGet
+                  0x001306                  _TMR2_Counter32BitSet
+                  0x00131a                  _TMR2_Counter32BitGet
+                  0x001340                  _TMR2_Start
+                  0x00134e                  _TMR2_Stop
+                  0x001356                  _TMR2_GetElapsedThenClear
+                  0x00136e                  _TMR2_SoftwareCounterGet
+                  0x00137a                  _TMR2_SoftwareCounterClear
+ .text            0x001386         0xea build/default/debug/RGS_MCC_Copies/tmr4.o
+                  0x001386                  _TMR4_Initialize
+                  0x0013a6                  _TMR4_Period32BitSet
+                  0x0013ba                  _TMR4_Period32BitGet
+                  0x0013d8                  _TMR4_Counter32BitSet
+                  0x0013ec                  _TMR4_Counter32BitGet
+                  0x001412                  _TMR4_CallBack
+                  0x001418                  _TMR4_SetInterruptHandler
+                  0x001428                  _TMR4_Start
+                  0x001436                  _TMR4_Stop
+                  0x001440                  _TMR4_GetElapsedThenClear
+                  0x001458                  _TMR4_SoftwareCounterGet
+                  0x001464                  _TMR4_SoftwareCounterClear
+ .text            0x001470         0xb8 build/default/debug/RGS_MCC_Copies/tmr1.o
+                  0x001470                  _TMR1_Initialize
+                  0x001494                  _TMR1_Period16BitSet
+                  0x0014a6                  _TMR1_Period16BitGet
+                  0x0014ae                  _TMR1_Counter16BitSet
+                  0x0014c0                  _TMR1_Counter16BitGet
+                  0x0014c8                  _TMR1_CallBack
+                  0x0014ce                  _TMR1_SetInterruptHandler
+                  0x0014de                  _TMR1_Start
+                  0x0014ee                  _TMR1_Stop
+                  0x0014f8                  _TMR1_GetElapsedThenClear
+                  0x001510                  _TMR1_SoftwareCounterGet
+                  0x00151c                  _TMR1_SoftwareCounterClear
+ .text            0x001528         0xb2 build/default/debug/RGS_MCC_Copies/pin_manager.o
+                  0x001528                  _PIN_MANAGER_Initialize
+                  0x0015a6                  _RestoreDetect
+                  0x0015b8                  _CN_CallBack
+                  0x0015be                  _CN_SetInterruptHandler
+                  0x0015ce                  _CN_SetIOCInterruptHandler
+ .text            0x0015da         0xb2 build/default/debug/RGS_MCC_Copies/tmr3.o
+                  0x0015da                  _TMR3_Initialize
+                  0x0015f0                  _TMR3_Tasks_16BitOperation
+                  0x001612                  _TMR3_Period16BitSet
+                  0x001624                  _TMR3_Period16BitGet
+                  0x00162c                  _TMR3_Counter16BitSet
+                  0x00163e                  _TMR3_Counter16BitGet
+                  0x001646                  _TMR3_Start
+                  0x001654                  _TMR3_Stop
+                  0x00165c                  _TMR3_GetElapsedThenClear
+                  0x001674                  _TMR3_SoftwareCounterGet
+                  0x001680                  _TMR3_SoftwareCounterClear
+ .text            0x00168c         0xae build/default/debug/RGS_MCC_Copies/FrontAlignLaser.o
+                  0x00168c                  _FrontAlignLaser_Initialize
+                  0x0016a4                  _FrontAlignLaser_CallBack
+                  0x0016aa                  _FrontAlignLaser_Tasks
+                  0x0016bc                  _FrontAlignLaser_Start
+                  0x0016d6                  _FrontAlignLaser_Stop
+                  0x0016e4                  _FrontAlignLaser_SecondaryValueSet
+                  0x0016f0                  _FrontAlignLaser_PrimaryValueSet
+                  0x0016fc                  _FrontAlignLaser_IsCompareCycleComplete
+                  0x001714                  _FrontAlignLaser_FaultStatusGet
 
-.dinit            0x001782         0x6e
- .dinit           0x001782         0x6e data_init
+.dinit            0x00173a         0x6e
+ .dinit           0x00173a         0x6e data_init
 
-.text             0x0017f0         0xca
- .text            0x0017f0         0x5a build/default/debug/pin_CustomISR.o
-                  0x0017f0                  _ISR_CN_Dummy
-                  0x0017f8                  _ISR_CN_FrontSensor
-                  0x00181a                  _ISR_CN_RearSensor
-                  0x00183e                  _ISR_CN_WakeUp
- .text            0x00184a         0x42 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
-                  0x00184a                  _INTERRUPT_Initialize
- .text            0x00188c         0x2e build/default/debug/RGS_MCC_Copies/clock.o
-                  0x00188c                  _CLOCK_Initialize
+.text             0x0017a8         0xca
+ .text            0x0017a8         0x5a build/default/debug/pin_CustomISR.o
+                  0x0017a8                  _ISR_CN_Dummy
+                  0x0017b0                  _ISR_CN_FrontSensor
+                  0x0017d2                  _ISR_CN_RearSensor
+                  0x0017f6                  _ISR_CN_WakeUp
+ .text            0x001802         0x42 build/default/debug/RGS_MCC_Copies/interrupt_manager.o
+                  0x001802                  _INTERRUPT_Initialize
+ .text            0x001844         0x2e build/default/debug/RGS_MCC_Copies/clock.o
+                  0x001844                  _CLOCK_Initialize
 
-.init.delay32     0x0018ba         0x1c
- .init.delay32    0x0018ba         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32.Meo)
-                  0x0018ba                  ___delay32
+.init.delay32     0x001872         0x1c
+ .init.delay32    0x001872         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32.Meo)
+                  0x001872                  ___delay32
 
-.text             0x0018d6         0x28
- .text            0x0018d6         0x18 build/default/debug/RGS_MCC_Copies/system.o
-                  0x0018d6                  _SYSTEM_Initialize
- .text            0x0018ee         0x10 build/default/debug/mcc_generated_files/where_was_i.o
-                  0x0018ee                  _where_was_i
+.text             0x00188e         0x28
+ .text            0x00188e         0x18 build/default/debug/RGS_MCC_Copies/system.o
+                  0x00188e                  _SYSTEM_Initialize
+ .text            0x0018a6         0x10 build/default/debug/mcc_generated_files/where_was_i.o
+                  0x0018a6                  _where_was_i

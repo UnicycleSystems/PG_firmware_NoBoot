@@ -187,29 +187,45 @@ int main(void)
    // while VBUS on........ 
   //button test
     
-   
+    bool charged;
+    charged =0;
     //put on red front led
     // this is the charger loop, will later contain a 'sleep' with wdg wake up
     while(POWER_BUTTON_GetValue())
 
     {
         ClrWdt();
-         PWM_GREEN_SetHigh();//Turn on Red LED
-          __delay_ms(50);
-         PWM_GREEN_SetLow();//Turn off Red LED
-          __delay_ms(50);  
-         
+        if(!charged)
+        {    
+         RED_LED_ON_SetHigh();
+        __delay_ms(5);
+        RED_LED_ON_SetLow();
+        __delay_ms(1000);
+        }
+        
+        if(VER_0_GetValue())
+        {
+            charged=1;
+            PWM_BLUE_SetHigh();//Turn on Green LED
+            PWM_GREEN_SetLow();//Turn off Red LED 
+        }
+        else
+        {
+            charged=0;
+           PWM_GREEN_SetHigh();//Turn off Red LED 
+            PWM_BLUE_SetLow();//Turn on Green LED
+        }
         // wait for some other eventn
         //or sleep and try again on wake..... 
     }
     
-    
+    RED_LED_ON_SetLow();
  // 
      while(!PowerButton(On))//wait for a 'power on  press and hold to complete
          ClrWdt();
      PWM_BLUE_SetHigh();//Turn on Green LED
      PWM_GREEN_SetLow();//Turn off Red LED
-    
+
      POST_Routine();
    
     
@@ -265,8 +281,7 @@ ChangeLighting();
     LastOnOff=0;
     uint32_t DebugTime;
   
-    //Set up the 'ticks per second' value. Hard coded for now,..
-    // so this is just 16,000,000, arranged big endian
+  
     EMULATE_EEPROM_Memory[4] = (uint8_t)(0x00);  // Most significant byte
     EMULATE_EEPROM_Memory[5] = (uint8_t)(0xF4);
     EMULATE_EEPROM_Memory[6] = (uint8_t)(0x24);
@@ -303,10 +318,7 @@ ChangeLighting();
                 PWM_GREEN_SetLow();//Turn off Red LED
             }
   
- // uint32_t AccelCall;
- // AccelCall=0;  // this is a really rough way to get it to run in the background, until
-                // I add it to the RTOS
- //   SwitchState=0;
+
     while(1)
     {
          if(!POWER_BUTTON_GetValue())
@@ -318,59 +330,7 @@ ChangeLighting();
          }
          
          //add power bit...
-             
-         ClrWdt();
-//#define buttontest
-#ifdef buttontest
-         
-          if(SwitchState)
-        {
-              SwitchState=0;
-            CallJetsonJob();
-          
-        }
-         
-        if(!POWER_BUTTON_GetValue())
-             ButtonCount++;
-         else 
-         {
-             ButtonCount=0;
-             PWM_BLUE_SetLow();
-         }
-        if(ButtonCount>1000000)
-        {
-           PWM_BLUE_SetHigh(); 
-          
-        }
-        if(ButtonCount>1500000)
-        {
-            PWM_BLUE_SetLow();
-             while(!POWER_BUTTON_GetValue())
-             {
-                __delay_ms(50);
-                ClrWdt();
-             }
-             while(!POWER_BUTTON_GetValue())
-             {
-                __delay_ms(50);
-                ClrWdt();
-             }
-            SwitchState=1;
-            
-        } 
-       
-#endif
-      //   AccelCall++;
-       //  if (AccelCall>600000)
-       //  {
-       //     AccelCall=0;
-       //     LOCAL_STATUS_LED_Toggle();
-        //    QuickAcellerometerGrabber();
-            
-       //  }
-             
-
-         if (LedOn)
+        if (LedOn)
         {
             if(FrontSense)
             { 
@@ -437,10 +397,8 @@ ChangeLighting();
             RearSense=0;
             TMR4_Initialize ();
             RestoreDetect();
-           
-            
+                      
         }
-  
  
     }
 } 
@@ -987,7 +945,7 @@ void POST_Routine()
           {
             ClrWdt();
              if(!POWER_BUTTON_GetValue())
-              PowerDown();refg
+              PowerDown();
           }
           PWM_BLUE_SetHigh();//Turn onGreen LED
           PWM_GREEN_SetLow();//Turn off Red LED
