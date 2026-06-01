@@ -103,7 +103,11 @@
 #define BeamOn BEAM_SetLow()
 #define BeamOff BEAM_SetHigh()
 
+#define ButtonDelay 5    // The number of cycles of the button hold to return 'true)
+                         // NOT debounce, this is the long (ish)user press and hold
 
+#define On 1
+#define Off 0
 
 static uint8_t s_addr = LIS_ADDR_0;
 void LIS2DW12_SetAddress_I2C2(uint8_t addr) { s_addr = addr; }
@@ -129,6 +133,9 @@ bool lis2dw12_read_register(uint8_t reg, uint8_t *value);
 //bool LIS2DW12_Configure(void);
 void ShutdownProcessTemp(void);
 void PowerDown(void);
+
+void POST_Routine();
+uint8_t PowerButton (bool OnOff);
 
  int16_t x;
  int16_t y;
@@ -182,125 +189,29 @@ int main(void)
     
    
     //put on red front led
+    // this is the charger loop, will later contain a 'sleep' with wdg wake up
     while(POWER_BUTTON_GetValue())
-  //  while(1)
+
     {
         ClrWdt();
          PWM_GREEN_SetHigh();//Turn on Red LED
-          __delay_ms(10);
+          __delay_ms(50);
          PWM_GREEN_SetLow();//Turn off Red LED
           __delay_ms(50);  
          
         // wait for some other eventn
         //or sleep and try again on wake..... 
     }
-    uint8_t ButtonPressHold;
-    ButtonPressHold=0;
     
-    if(!POWER_BUTTON_GetValue())
-        __delay_ms(100);
-   
-    while(!POWER_BUTTON_GetValue())
-    {
-        ButtonPressHold++;
-        
-      __delay_ms(50); 
-        PWM_BLUE_SetHigh();//Turn on Green LED
-       PWM_GREEN_SetLow();//Turn off Red LED
-      __delay_ms(100); 
-       PWM_GREEN_SetHigh();//Turn on Red LED
-      PWM_BLUE_SetLow();//Turn off Green LED
-      __delay_ms(50);
-      if (ButtonPressHold>5)  
-      {
-          HOLD_PWR_SetHigh();
-          JETSON_5V_ON_SetHigh();
-           PWM_BLUE_SetHigh();//Turn/JETSON_5V_ON_SetHigh(); on Green LED
-           PWM_GREEN_SetLow();//Turn off Red LED
-          break;
-      }
-          
-    }
-    //blip the red led back on while debouncing
-     
     
-    //OTT debounce on button release - 
-    
-  
-    __delay_ms(50);
-    while(!POWER_BUTTON_GetValue())
-    {
-       
-       __delay_ms(50);    
-    }
-    
-    __delay_ms(50);
-    
-     while(!POWER_BUTTON_GetValue())
-    {
-       __delay_ms(50);    
-    }
+ // 
+     while(!PowerButton(On))//wait for a 'power on  press and hold to complete
+         ClrWdt();
      PWM_BLUE_SetHigh();//Turn on Green LED
-           PWM_GREEN_SetLow();//Turn off Red LED
-    __delay_ms(50);
-    //go back to green after debounce
-    PWM_BLUE_SetHigh();//Turn on Green LED
-    PWM_GREEN_SetLow();//Turn off Red LED
+     PWM_GREEN_SetLow();//Turn off Red LED
     
-    //POST routine
-    uint8_t count;
+     POST_Routine();
    
-    BeamOn;
-        for(count=0;count<5;count++)
-        {
-            FrontLaserOn;
-            RearLaserOn;
-            __delay_ms(200);
-            ClrWdt();
-            FrontLaserOff;
-            RearLaserOff;
-            __delay_ms(200);
-            FrontLaserOn;
-            __delay_ms(200)
-            FrontLaserOff;
-            __delay_ms(200);
-            ClrWdt();
-            __delay_ms(200);
-            PWM_BLUE_Toggle();
-            PWM_GREEN_Toggle();
-        }
-        
-
-    //check both sensors
-          PWM_BLUE_SetLow();//Turn off Green LED
-          PWM_GREEN_SetHigh();//Turn on Red LED
-        
-        __delay_ms(200);
-        ClrWdt();
-      
-       
-            
-            ClrWdt();
-           FrontLaserOn; 
-          while(FRONT_BALL_SENSE_GetValue())
-            ClrWdt();
-          PWM_BLUE_SetHigh();//Turn onGreen LED
-          PWM_GREEN_SetLow();//Turn off Red LED
-          FrontLaserOff;
-          __delay_ms(500);
-          ClrWdt();
-          RearLaserOn;
-           PWM_BLUE_SetLow();//Turn off Green LED
-          PWM_GREEN_SetHigh();//Turn on Red LED
-         while(REAR_BALL_SENSE_GetValue())
-            ClrWdt();
-            PWM_BLUE_SetHigh();//Turn onGreen LED
-          PWM_GREEN_SetLow();//Turn off Red LED
-          RearLaserOff;
-          
-          
-    
-          
     
     TMR3_Start();  //TODO: what is this for?
     
@@ -958,71 +869,147 @@ void QuickAcellerometerGrabber(void)
 //refactor into a general purpose button thing...
 void PowerDown(void)
 { 
+
+    if (PowerButton(Off))
+    {
+        JETSON_5V_ON_SetLow();
+        HOLD_PWR_SetLow();
+        asm("reset");
+    }
+    return;
+    
+}
+
+
+//returns 1 if Power button held long enough
+// or 0 if not....
+uint8_t PowerButton (bool OnOff)
+{
     uint8_t ButtonPressHold;
     ButtonPressHold=0;
-   //debounce button before comitting....
-    if(POWER_BUTTON_GetValue())
-        return;
-    __delay_ms(50);
-    if(POWER_BUTTON_GetValue())
-        return;
-    __delay_ms(50);
-     while(!POWER_BUTTON_GetValue())
+    bool ButtonPassed;
+    ButtonPassed=0;
+    
+    while(!POWER_BUTTON_GetValue())
     {
         ButtonPressHold++;
         
-      __delay_ms(50); 
-        PWM_BLUE_SetHigh();//Turn on Green LED
+     
+       PWM_BLUE_SetHigh();//Turn on Green LED
        PWM_GREEN_SetLow();//Turn off Red LED
       __delay_ms(100); 
-       PWM_GREEN_SetHigh();//Turn on Red LED
+      PWM_GREEN_SetHigh();//Turn on Red LED
       PWM_BLUE_SetLow();//Turn off Green LED
       __delay_ms(50);
       if (ButtonPressHold>5)  
       {
-         
-           PWM_BLUE_SetLow();//Turn oF Green LED
-           PWM_GREEN_SetHigh();//Turn off Red LED
+          ButtonPassed=1;
+        
           break;
       }
           
     }
-    //OTT debounce on button release - 
+    if (OnOff)
+    {
+         HOLD_PWR_SetHigh();
+         JETSON_5V_ON_SetHigh();
+         PWM_BLUE_SetHigh();//Turn/JETSON_5V_ON_SetHigh(); on Green LED
+         PWM_GREEN_SetLow();//Turn off Red LED 
+    }
+    else
+    {
+      PWM_GREEN_SetHigh();//Turn on Red LED
+      PWM_BLUE_SetLow();//Turn off Green LED  
+    }
+        
+
     __delay_ms(50);
     while(!POWER_BUTTON_GetValue())
     {
+        ClrWdt();
        __delay_ms(50);    
     }
+    
     __delay_ms(50);
+    
      while(!POWER_BUTTON_GetValue())
     {
-       __delay_ms(50);    
+         ClrWdt();
+         __delay_ms(50);    
     }
     
-    __delay_ms(50);
-    
-    //check if button released early.. abort power down if so...
-    if(ButtonPressHold<5)
-    {
-        PWM_BLUE_SetHigh();//Turn on Green LED
-        PWM_GREEN_SetLow();//Turn off Red LED
-        return;
-    }
-       
-    
-    JETSON_5V_ON_SetLow();
-     HOLD_PWR_SetLow();
-     
-     asm("reset");
-     
-    //go back to green after debounce
- 
-    
-    
-    
-    
-    
+    return(ButtonPassed);
+         
 }
+
+
+
+//Self Test routine ... flashes lasers, checks sensors
+void POST_Routine()
+{
+    uint8_t count;
+   
+    BeamOn;
+    
+    //Flash the lasers a few times
+        for(count=0;count<5;count++)
+        {
+            FrontLaserOn;
+            RearLaserOn;
+            __delay_ms(200);
+            ClrWdt();
+            FrontLaserOff;
+            RearLaserOff;
+            __delay_ms(200);
+            FrontLaserOn;
+            __delay_ms(200)
+            FrontLaserOff;
+            __delay_ms(200);
+            ClrWdt();
+            __delay_ms(200);
+            PWM_BLUE_Toggle();
+            PWM_GREEN_Toggle();
+        }
+        
+
+    //check both sensors
+          PWM_BLUE_SetLow();//Turn off Green LED
+          PWM_GREEN_SetHigh();//Turn on Red LED
+        
+        __delay_ms(200);
+        ClrWdt();
+      
+       
+          
+            ClrWdt();
+           FrontLaserOn; 
+          while(FRONT_BALL_SENSE_GetValue())
+          {
+            ClrWdt();
+             if(!POWER_BUTTON_GetValue())
+              PowerDown();refg
+          }
+          PWM_BLUE_SetHigh();//Turn onGreen LED
+          PWM_GREEN_SetLow();//Turn off Red LED
+          FrontLaserOff;
+          __delay_ms(500);
+          ClrWdt();
+          RearLaserOn;
+           PWM_BLUE_SetLow();//Turn off Green LED
+          PWM_GREEN_SetHigh();//Turn on Red LED
+         while(REAR_BALL_SENSE_GetValue())
+         {
+            ClrWdt();
+            if(!POWER_BUTTON_GetValue())
+             PowerDown();
+         }
+            PWM_BLUE_SetHigh();//Turn onGreen LED
+          PWM_GREEN_SetLow();//Turn off Red LED
+          RearLaserOff;
+          
+}      
+    
+          
 
 
 // accellerometer header will look something like this
