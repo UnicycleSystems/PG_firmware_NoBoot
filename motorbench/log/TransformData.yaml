@@ -1,0 +1,315 @@
+meta :
+  timeStamp : 2025-05-28T09:29:56.937Z
+adc:
+  args:
+    customName: "MCC_ADC"
+    interruptDriven: false
+    resolution: 12
+    requestedSharedSamplingTime_us: 0.3
+    dataOutputFormat: "Fractional"
+  results:
+    channelConfigurations:
+    - interruptEnable: false
+      channel: "AN1"
+      signedDataFormat: true
+      customName: "MCAF_ADC_PHASEA_CURRENT"
+      core: "Shared"
+      conversionTrigger: null
+    - interruptEnable: false
+      channel: "AN4"
+      signedDataFormat: true
+      customName: "MCAF_ADC_PHASEB_CURRENT"
+      core: "Shared"
+      conversionTrigger: null
+    - interruptEnable: false
+      channel: "AN8"
+      signedDataFormat: true
+      customName: "MCAF_ADC_DCLINK_CURRENT"
+      core: "Shared"
+      conversionTrigger: null
+    - interruptEnable: false
+      channel: "AN10"
+      signedDataFormat: true
+      customName: "MCAF_ADC_DCLINK_VOLTAGE"
+      core: "Shared"
+      conversionTrigger: null
+    - interruptEnable: false
+      channel: "AN13"
+      signedDataFormat: true
+      customName: "MCAF_ADC_POTENTIOMETER"
+      core: "Shared"
+      conversionTrigger: null
+oscillator:
+  shouldAutoAssignDescendants: true
+  args:
+    mainClockArg:
+      mainClockInputFrequency_Hz: 8000000
+      setMaximumSystemFrequency: true
+      fvcoDivider: 4
+      mainClockSource: "Primary Oscillator with PLL"
+  results:
+    customName: "motorClock"
+wdt:
+  shouldAutoAssignDescendants: true
+  args:
+    wdtEnable: true
+    requestedWdtPeriod_ms: 1
+    wdtMode: "Non-Window mode"
+    wdtEnableType: "Software"
+  results:
+    customName: "motorWDT"
+tmrProfile:
+  shouldAutoAssignDescendants: true
+  args:
+    interruptDriven: false
+    getInterfaceAPI: false
+    moduleEnable: true
+  results:
+    customName: "MCC_TMR_PROFILE"
+    plibRequests:
+      clkSrc: "FCY"
+      clkPrescaler: 1
+      periodCount: 65535
+pwm:
+  shouldAutoAssignDescendants: true
+  args:
+    polaritySettings:
+      polarityUpper: "Active-high"
+      polarityLower: "Active-high"
+    interruptDriven: false
+    faultInputPolarity: "Active-low"
+    synchronousUpdate: true
+    pwmGeneratorMapping:
+    - generator: 1
+      name: "MOTOR1_PHASE_A"
+      swapBitEnable: false
+    - generator: 2
+      name: "MOTOR1_PHASE_B"
+      swapBitEnable: false
+    - generator: 3
+      name: "MOTOR1_PHASE_C"
+      swapBitEnable: false
+    requestedFrequency_Hz: 20000.0
+    requestedDeadTime_us: 2.0
+  results:
+    customName: "MCC_PWM"
+    faultInputSource: "Device pin, PCI19"
+icd:
+  shouldAutoAssignDescendants: true
+  results:
+    setIcd: "Communicate on PGC3 and PGD3"
+qei:
+  shouldAutoAssignDescendants: true
+  args:
+    indexPulseCaptureEnable: false
+    homePulseCaptureEnable: false
+    indexPulsePolarity: false
+    noiseFilterEnable: false
+    qeiOperationMode: "Modulo Count mode"
+    homePulsePolarity: false
+  results:
+    customName: "MCC_QEI"
+    plibRequests:
+      pinRequest:
+      - lockPinData:
+          lockPinNameRegEx: ".*\\bRA8\\b"
+          lockPinAliasRegEx: "^QEA[1-2]"
+        moduleName: "MCC_QEI"
+        reqPinAttribs:
+        - setOpenDrain: false
+          setWeakPullUp: false
+          customName: "MCC_QEIQEA"
+          setWeakPullDown: false
+          startHigh: true
+          pinNameRegEx: ".*\\bRA8\\b"
+          interruptOnChange: "none"
+          setAnalog: false
+        direction: "input"
+      - lockPinData:
+          lockPinNameRegEx: ".*\\bRC6\\b"
+          lockPinAliasRegEx: "^QEB[1-2]"
+        moduleName: "MCC_QEI"
+        reqPinAttribs:
+        - setOpenDrain: false
+          setWeakPullUp: false
+          customName: "MCC_QEIQEB"
+          setWeakPullDown: false
+          startHigh: true
+          pinNameRegEx: ".*\\bRC6\\b"
+          interruptOnChange: "none"
+          setAnalog: false
+        direction: "input"
+      - lockPinData:
+          lockPinNameRegEx: ".*\\bRF0\\b"
+          lockPinAliasRegEx: "^INDX[1-2]"
+        moduleName: "MCC_QEI"
+        reqPinAttribs:
+        - setOpenDrain: false
+          setWeakPullUp: false
+          customName: "MCC_QEIINDX"
+          setWeakPullDown: false
+          startHigh: true
+          pinNameRegEx: ".*\\bRF0\\b"
+          interruptOnChange: "none"
+          setAnalog: false
+        direction: "input"
+tmrTick:
+  args:
+    interruptDriven: true
+    requestedTimerPeriod_ms: 1
+    getInterfaceAPI: false
+    moduleEnable: true
+  results:
+    customName: "MCC_TMR_TICK"
+    plibRequests: {}
+uart:
+  shouldAutoAssignDescendants: true
+  args:
+    baudrate: 115200
+    stopBits: 1
+    rxDataBufferSize: 8
+    parity: "None"
+    dataSize: 8
+    customName: "MCC_UART"
+    interruptDriven: false
+    txDataBufferSize: 8
+  results:
+    plibRequests:
+      pinRequest:
+      - lockPinData:
+          lockPinNameRegEx: ".*\\bRF1\\b"
+          lockPinAliasRegEx: "U[0-9]TX"
+        moduleName: "TX"
+        reqPinAttribs:
+        - setOpenDrain: false
+          setWeakPullUp: false
+          customName: "motorUartTx"
+          setWeakPullDown: false
+          startHigh: false
+          pinNameRegEx: ".*\\bRF1\\b"
+          interruptOnChange: "none"
+          setAnalog: false
+        direction: "output"
+      - lockPinData:
+          lockPinNameRegEx: ".*\\bRC5\\b"
+          lockPinAliasRegEx: "U[0-9]RX"
+        moduleName: "RX"
+        reqPinAttribs:
+        - setOpenDrain: false
+          setWeakPullUp: false
+          customName: "motorUartRx"
+          setWeakPullDown: false
+          startHigh: false
+          pinNameRegEx: ".*\\bRC5\\b"
+          interruptOnChange: "none"
+          setAnalog: false
+        direction: "input"
+gpio:
+  shouldAutoAssignDescendants: true
+  results:
+    rows:
+    - behaviourMeta:
+        lockPinRegEx: ".*\\bRD6\\b"
+        lockPinNameReEx: ".*\\bRD6\\b"
+      module: "motorBench"
+      attribs:
+      - cname: "MCAF_LED1"
+        aliasReEx: ".*\\bRD6\\b"
+        wpd: false
+        inv: false
+        analog: false
+        high: false
+        od: false
+        ioc: "NONE"
+        wpu: false
+      filter:
+        module: "GPIO"
+        aliasReEx: ".*\\bRD6\\b"
+      function: "MCAF_LED1"
+      name: "MCAF_LED1"
+      behaviour: "ALWAYS_LOCKED"
+      direction: "output"
+    - behaviourMeta:
+        lockPinRegEx: ".*\\bRD5\\b"
+        lockPinNameReEx: ".*\\bRD5\\b"
+      module: "motorBench"
+      attribs:
+      - cname: "MCAF_LED2"
+        aliasReEx: ".*\\bRD5\\b"
+        wpd: false
+        inv: false
+        analog: false
+        high: false
+        od: false
+        ioc: "NONE"
+        wpu: false
+      filter:
+        module: "GPIO"
+        aliasReEx: ".*\\bRD5\\b"
+      function: "MCAF_LED2"
+      name: "MCAF_LED2"
+      behaviour: "ALWAYS_LOCKED"
+      direction: "output"
+    - behaviourMeta:
+        lockPinRegEx: ".*\\bRD8\\b"
+        lockPinNameReEx: ".*\\bRD8\\b"
+      module: "motorBench"
+      attribs:
+      - cname: "MCAF_TESTPOINT1"
+        aliasReEx: ".*\\bRD8\\b"
+        wpd: false
+        inv: false
+        analog: false
+        high: false
+        od: false
+        ioc: "NONE"
+        wpu: false
+      filter:
+        module: "GPIO"
+        aliasReEx: ".*\\bRD8\\b"
+      function: "MCAF_TESTPOINT1"
+      name: "MCAF_TESTPOINT1"
+      behaviour: "ALWAYS_LOCKED"
+      direction: "output"
+    - behaviourMeta:
+        lockPinRegEx: ".*\\bRG7\\b"
+        lockPinNameReEx: ".*\\bRG7\\b"
+      module: "motorBench"
+      attribs:
+      - cname: "MCAF_BUTTON1"
+        aliasReEx: ".*\\bRG7\\b"
+        wpd: false
+        inv: false
+        analog: false
+        high: false
+        od: false
+        ioc: "NONE"
+        wpu: false
+      filter:
+        module: "GPIO"
+        aliasReEx: ".*\\bRG7\\b"
+      function: "MCAF_BUTTON1"
+      name: "MCAF_BUTTON1"
+      behaviour: "ALWAYS_LOCKED"
+      direction: "input"
+    - behaviourMeta:
+        lockPinRegEx: ".*\\bRG6\\b"
+        lockPinNameReEx: ".*\\bRG6\\b"
+      module: "motorBench"
+      attribs:
+      - cname: "MCAF_BUTTON2"
+        aliasReEx: ".*\\bRG6\\b"
+        wpd: false
+        inv: false
+        analog: false
+        high: false
+        od: false
+        ioc: "NONE"
+        wpu: false
+      filter:
+        module: "GPIO"
+        aliasReEx: ".*\\bRG6\\b"
+      function: "MCAF_BUTTON2"
+      name: "MCAF_BUTTON2"
+      behaviour: "ALWAYS_LOCKED"
+      direction: "input"
