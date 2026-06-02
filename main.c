@@ -109,6 +109,14 @@
 #define On 1
 #define Off 0
 
+
+
+
+///Test functions switches
+
+#define PWR_BUTT_LAUNCH_TEST
+
+
 static uint8_t s_addr = LIS_ADDR_0;
 void LIS2DW12_SetAddress_I2C2(uint8_t addr) { s_addr = addr; }
 static bool i2c2_wait_done(volatile I2C2_MESSAGE_STATUS *st, uint16_t timeout_ms);
@@ -134,7 +142,8 @@ bool lis2dw12_read_register(uint8_t reg, uint8_t *value);
 void ShutdownProcessTemp(void);
 void PowerDown(void);
 
-void POST_Routine();
+void POST_Routine(void);
+void LaunchTest(void);
 uint8_t PowerButton (bool OnOff);
 
  int16_t x;
@@ -243,37 +252,15 @@ int main(void)
 
     
     ClrWdt();
-    //PWM_BLUE_Toggle();
-    //REAR_LASER_PWM_Toggle
-//#define TestBeam1
-#ifdef TestBeam1  
-   while(1)
-   {
-       if(FRONT_BALL_SENSE_GetValue())
-        FRONT_LASER_PWM_SetLow();
-       else
-      FRONT_LASER_PWM_SetHigh();
-      if(REAR_BALL_SENSE_GetValue())
-        REAR_LASER_PWM_SetLow();
-       else
-      REAR_LASER_PWM_SetHigh(); 
-       
-        __delay_ms(1000);
-       ClrWdt();
-        
-  }
-#endif
-    
-    
- //JETSON_5V_ON_SetHigh();
+
     IFS1bits.T5IF = false;
     IFS1bits.T5IF = false;
     IEC1bits.T5IE = false;
     IFS1bits.CNIF = 0;
     INTERRUPT_GlobalEnable();   // this is an inline, in the interrupt manager header, so not a function call as such!
  
-ChangeLighting();
-             LightingUpdate=0;
+    ChangeLighting();
+    LightingUpdate=0;
     uint8_t bugout;
   
     char LastOnOff;
@@ -320,9 +307,14 @@ ChangeLighting();
   
 
     while(1)
-    {
-         if(!POWER_BUTTON_GetValue())
+    {    
+        if(!POWER_BUTTON_GetValue())
+#ifdef  PWR_BUTT_LAUNCH_TEST
+            LaunchTest();
+#else
+         
              PowerDown();
+#endif
          if(LightingUpdate)
          {
              ChangeLighting();
@@ -903,7 +895,7 @@ uint8_t PowerButton (bool OnOff)
 
 
 //Self Test routine ... flashes lasers, checks sensors
-void POST_Routine()
+void POST_Routine(void)
 {
     uint8_t count;
    
@@ -967,7 +959,33 @@ void POST_Routine()
           
 }      
     
-          
+ void LaunchTest(void)
+ {
+     float voltage;
+     voltage=0;
+     float conversion;
+     conversion = 0.000078125;
+     uint8_t dst[2];
+     uint16_t RegInt;
+     ClrWdt();
+     i2c2_read_regs(0x36, 0x09, dst, 2);
+      ClrWdt(); 
+     RegInt=dst[1];
+     RegInt<<=8;
+     RegInt+=dst[0];
+     voltage=(float)RegInt;
+     
+     
+     voltage=voltage*conversion;
+     
+     conversion=voltage/12;
+     
+     
+     
+            
+     
+     
+ }
 
 
 // accellerometer header will look something like this

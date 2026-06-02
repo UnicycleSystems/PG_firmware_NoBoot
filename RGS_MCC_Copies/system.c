@@ -59,8 +59,8 @@
 // CONFIG1
 #pragma config WDTPS = PS2048    //Watchdog Timer Postscaler->1:512
 #pragma config FWPSA = PR128    //WDT Prescaler->Prescaler ratio of 1:128
-#pragma config WINDIS = ON    //Watchdog Timer Window->Standard Watchdog Timer enabled,(Windowed-mode is disabled)
-#pragma config FWDTEN = ON    //Watchdog Timer Enable->Watchdog Timer is enabled
+#pragma config WINDIS = OFF    //Watchdog Timer Window->Standard Watchdog Timer enabled,(Windowed-mode is disabled)
+#pragma config FWDTEN = OFF    //Watchdog Timer Enable->Watchdog Timer is enabled
 #pragma config ICS = PGx1    //Comm Channel Select->Emulator EMUC1/EMUD1 pins are shared with PGC1/PGD1
 #pragma config BKBUG = OFF    //Background Debug->Device resets into Operational mode
 #pragma config GWRP = OFF    //General Code Segment Write Protect->Writes to program memory are allowed
