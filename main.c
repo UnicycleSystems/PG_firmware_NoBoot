@@ -319,7 +319,7 @@ int main(void)
                 PWM_GREEN_SetLow();//Turn off Red LED
             }
   
-#define PWR_BUTT_LAUNCH_TEST
+//#define PWR_BUTT_LAUNCH_TEST
     while(1)
     {    
        if(!POWER_BUTTON_GetValue())
@@ -1024,7 +1024,11 @@ void POST_Routine(void)
 
 void GetAccel(void)
 {
-    PWM_BLUE_Toggle();
+    PWM_BLUE_SetLow();//Turn off Green LED
+    PWM_GREEN_SetHigh();//Turn on Red LED
+    
+    PWM_BLUE_SetHigh();//Turn off Green LED
+    PWM_GREEN_SetLow();//Turn on Red LED
 }
 // accellerometer header will look something like this
 
