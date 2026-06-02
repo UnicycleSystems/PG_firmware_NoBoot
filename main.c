@@ -80,8 +80,7 @@
 
 //commented out here, copied to top, but preserved for moving to header file
 /* ---- LIS2DW12 / LIS2DW1TR basics ---- */
-#define LIS_ADDR_0          0x18
-#define LIS_ADDR_1          0x19
+
 #define REG_WHO_AM_I        0x0F    /* expect 0x44 */
 #define REG_CTRL1           0x20
 #define REG_CTRL2           0x21
@@ -299,7 +298,7 @@ int main(void)
   //  I2C2_Initialize();
     /* Probe WHO_AM_I on a given 7-bit addr; record findings at EEPROM offsets */
 
-  //  LIS2DW12_Init_I2C2();    // TODO: should ensure it inits, or returns an error
+    LIS2DW12_Init_I2C2();    // TODO: should ensure it inits, or returns an error
   //  uint8_t id = 0x00;
 
   //PWM_GREEN_SetHigh();PWM_GREEN is RED!!!!!
@@ -821,22 +820,22 @@ void QuickAcellerometerGrabber(void)
         uint16_t uz = (uint16_t)z;
 
         // Pack as [X_H, X_L, Y_H, Y_L, Z_H, Z_L]
-        EMULATE_EEPROM_Memory[8]  = (uint8_t)(ux >> 8);
-         EMULATE_EEPROM_Memory[9] = (uint8_t)(ux);
-         EMULATE_EEPROM_Memory[10] = (uint8_t)(uy >> 8);
-         EMULATE_EEPROM_Memory[11] = (uint8_t)(uy);
-         EMULATE_EEPROM_Memory[12] = (uint8_t)(uz >> 8);
-         EMULATE_EEPROM_Memory[13] = (uint8_t)(uz);
+        EMULATE_EEPROM_Memory[10]  = (uint8_t)(ux >> 8);
+         EMULATE_EEPROM_Memory[11] = (uint8_t)(ux);
+         EMULATE_EEPROM_Memory[12] = (uint8_t)(uy >> 8);
+         EMULATE_EEPROM_Memory[13] = (uint8_t)(uy);
+         EMULATE_EEPROM_Memory[14] = (uint8_t)(uz >> 8);
+         EMULATE_EEPROM_Memory[15] = (uint8_t)(uz);
             /* use raw counts; scale later if needed */
         }
         else // if it fubars, then just fill with 0xFF;
         {
-         EMULATE_EEPROM_Memory[8]  = 0xFF;
-         EMULATE_EEPROM_Memory[9] = 0xFF;
-         EMULATE_EEPROM_Memory[10] = 0xFF;
-         EMULATE_EEPROM_Memory[11] =0xFF;;
-         EMULATE_EEPROM_Memory[12] =0xFF;
-         EMULATE_EEPROM_Memory[13] =0xFF; 
+         EMULATE_EEPROM_Memory[10]  = 0xFF;
+         EMULATE_EEPROM_Memory[11] = 0xFF;
+         EMULATE_EEPROM_Memory[12] = 0xFF;
+         EMULATE_EEPROM_Memory[13] =0xFF;;
+         EMULATE_EEPROM_Memory[14] =0xFF;
+         EMULATE_EEPROM_Memory[15] =0xFF; 
         }
 }
 
@@ -1026,7 +1025,7 @@ void GetAccel(void)
 {
     PWM_BLUE_SetLow();//Turn off Green LED
     PWM_GREEN_SetHigh();//Turn on Red LED
-    
+    QuickAcellerometerGrabber();
     PWM_BLUE_SetHigh();//Turn off Green LED
     PWM_GREEN_SetLow();//Turn on Red LED
 }
