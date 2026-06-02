@@ -6,6 +6,7 @@ char LedOn=0;
   uint8_t LightingUpdate=0;
  uint32_t TransitTime=0;
 uint8_t GateTimeout=0;
+uint8_t DoTask=0;
 uint8_t WakeUp=0;
 /*
 Events RtosEvents;

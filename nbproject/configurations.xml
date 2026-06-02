@@ -54,7 +54,6 @@
         <itemPath>RGS_MCC_Copies/clock.c</itemPath>
         <itemPath>RGS_MCC_Copies/tmr1.c</itemPath>
         <itemPath>RGS_MCC_Copies/tmr2.c</itemPath>
-        <itemPath>RGS_MCC_Copies/tmr3.c</itemPath>
         <itemPath>RGS_MCC_Copies/tmr4.c</itemPath>
         <itemPath>RGS_MCC_Copies/i2c2.c</itemPath>
         <itemPath>RGS_MCC_Copies/interrupt_manager.c</itemPath>
@@ -446,7 +445,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
         <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>

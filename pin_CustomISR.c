@@ -4,6 +4,7 @@
 #include "RGS_MCC_Copies/tmr4.h"
 #include "pin_CustomISR.h"
 #include "Events.h"
+#include "RGS_MCC_Copies/tmr2.h"
 
 //Jump straight in with code...
 
@@ -24,7 +25,7 @@ void (ISR_CN_FrontSensor)(void)
    TMR4_Counter32BitSet(0); 
    TMR4_Start();  //Disable the front sensor CN interrupt
    FrontSensorOff;
-   
+   TMR2_Stop();
            
    IFS1bits.T5IF = false;
    IEC1bits.T5IE = true;

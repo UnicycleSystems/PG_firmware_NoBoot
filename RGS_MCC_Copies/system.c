@@ -70,14 +70,14 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
-//#include "interrupt_manager.h"
+#include "interrupt_manager.h"
 //#include "traps.h"
 #include "tmr4.h"
 //#include "uart1.h"
 //#include "uart2.h"
 #include "tmr1.h"
 #include "tmr2.h"
-#include "tmr3.h"
+//#include "tmr3.h"
 //#include "oc1.h"
 #include "i2c1.h"
 //include "oc2.h"
@@ -101,7 +101,6 @@ void SYSTEM_Initialize(void)
     //UART2_Initialize();
    // OC5_Initialize();
     I2C1_Initialize();
-    TMR3_Initialize();
    // OC2_Initialize();
     TMR1_Initialize();
 }

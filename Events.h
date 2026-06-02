@@ -19,6 +19,7 @@ extern "C" {
  extern uint8_t GateTimeout;
  extern uint8_t WakeUp;
  extern uint8_t LightingUpdate;
+ extern uint8_t DoTask;
  
  
 /*

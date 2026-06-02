@@ -60,7 +60,7 @@
 #include "RGS_MCC_Copies/i2c2.h"
 #include "RGS_MCC_Copies/i2c1.h"
 #include "RGS_MCC_Copies/tmr4.h"
-#include "RGS_MCC_Copies/tmr3.h"
+#include "RGS_MCC_Copies/tmr2.h"
 #include "RGS_MCC_Copies/pin_manager.h"
 //#include "lis2dw12.h"
 
@@ -114,7 +114,22 @@
 
 ///Test functions switches
 
-#define PWR_BUTT_LAUNCH_TEST
+
+
+
+// round robin tasks
+#define NUM_Tasks 2
+// functions as needed, increment NUM_Tasks 
+void GetBattVolts(void);
+void GetAccel(void);
+
+void (*Task[NUM_Tasks])(void)={GetBattVolts,GetAccel};
+
+
+
+
+uint8_t TaskIndex;
+
 
 
 static uint8_t s_addr = LIS_ADDR_0;
@@ -172,6 +187,7 @@ int main(void)
     SwitchState=0; 
     ButtonCount=0;
     PowerOff=false;
+    TaskIndex=0;
      
     //This is a 
     EMULATE_EEPROM_Memory[128] = 0;  //This should cause both lasers off
@@ -235,13 +251,11 @@ int main(void)
      PWM_BLUE_SetHigh();//Turn on Green LED
      PWM_GREEN_SetLow();//Turn off Red LED
 
+  // #define RunPOST
+#ifdef RunPOST
      POST_Routine();
+#endif
    
-    
-    TMR3_Start();  //TODO: what is this for?
-    
-    
-    
     
     FrontSensorOff;
     RearSensorOff;
@@ -305,16 +319,24 @@ int main(void)
                 PWM_GREEN_SetLow();//Turn off Red LED
             }
   
-
+#define PWR_BUTT_LAUNCH_TEST
     while(1)
     {    
-        if(!POWER_BUTTON_GetValue())
+       if(!POWER_BUTTON_GetValue())
 #ifdef  PWR_BUTT_LAUNCH_TEST
             LaunchTest();
 #else
          
              PowerDown();
 #endif
+          if(DoTask)
+             {   
+                Task[TaskIndex](); 
+                TaskIndex++;
+                if(TaskIndex>=NUM_Tasks)
+                    TaskIndex=0;
+                 DoTask=0;
+             }
          if(LightingUpdate)
          {
              ChangeLighting();
@@ -349,9 +371,10 @@ int main(void)
                 // wait a bit....
                 // turn off red light, turn on green light
                 RestoreDetect();
-                PWM_GREEN_SetLow();   //Red LED on        
+                TMR2_Start();
+                PWM_GREEN_SetLow();   //Red LED off       
            //  LOCAL_STATUS_LED_SetHigh();
-             PWM_BLUE_SetHigh();//green LED off      
+             PWM_BLUE_SetHigh();//green LED on    
             }
             LedOn=0;
         }
@@ -389,6 +412,7 @@ int main(void)
             RearSense=0;
             TMR4_Initialize ();
             RestoreDetect();
+            TMR2_Start();
                       
         }
  
@@ -760,7 +784,7 @@ bool LIS2DW12_Init_I2C2(void)
     if (!i2c2_write_u8(s_addr, REG_CTRL2, (uint8_t)(CTRL2_BDU | CTRL2_IF_ADD_INC)))
         { EMULATE_EEPROM_Memory[32] = 0xC2; return false; }
 
-    if (!i2c2_write_u8(s_addr, REG_CTRL1, 0x50))   // ~100 Hz, FS ±2g
+    if (!i2c2_write_u8(s_addr, REG_CTRL1, 0x50))   // ~100 Hz, FS ï¿½2g
         { EMULATE_EEPROM_Memory[33] = 0xC1; return false; }
 
     EMULATE_EEPROM_Memory[34] = 0x00;     // success
@@ -964,30 +988,44 @@ void POST_Routine(void)
      float voltage;
      voltage=0;
      float conversion;
-     conversion = 0.000078125;
-     uint8_t dst[2];
+     conversion = 0.0003125;
+    
      uint16_t RegInt;
      ClrWdt();
-     i2c2_read_regs(0x36, 0x09, dst, 2);
-      ClrWdt(); 
-     RegInt=dst[1];
+     RegInt=EMULATE_EEPROM_Memory[8];
      RegInt<<=8;
-     RegInt+=dst[0];
+     RegInt+=EMULATE_EEPROM_Memory[9];
      voltage=(float)RegInt;
      
      
      voltage=voltage*conversion;
      
      conversion=voltage/12;
-     
-     
-     
-            
-     
-     
+      
  }
 
 
+ 
+ void GetBattVolts(void)
+ {
+   
+    uint8_t dst[2];
+     PWM_BLUE_SetLow();//Turn off Green LED
+     PWM_GREEN_SetHigh();//Turn on Red LED
+     ClrWdt();
+     i2c2_read_regs(0x36, 0x09, dst, 2);
+      ClrWdt(); 
+      
+     EMULATE_EEPROM_Memory[8]=dst[1];
+     EMULATE_EEPROM_Memory[9]=dst[0];
+     PWM_BLUE_SetHigh();//Turn off Green LED
+     PWM_GREEN_SetLow();//Turn on Red LED
+ }
+
+void GetAccel(void)
+{
+    PWM_BLUE_Toggle();
+}
 // accellerometer header will look something like this
 
 /*
