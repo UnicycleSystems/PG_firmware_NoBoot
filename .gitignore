@@ -1,0 +1,20 @@
+# Build output
+build/
+dist/
+
+# MCC internal flag files
+.generated_files/
+
+# MCC auto-generated files (edited copies kept in RGS_MCC_Copies/)
+mcc_generated_files/
+
+# IDE local state
+nbproject/private/
+
+# Tool logs
+motorbench/log/
+queuelogs/
+
+# MPLAB trace logs
+defmplabxtrace.log
+defmplabxtrace.log.inx
