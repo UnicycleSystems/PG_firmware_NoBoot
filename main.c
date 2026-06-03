@@ -774,9 +774,7 @@ bool LIS2DW12_Init_I2C2(void)
 {
     EMULATE_EEPROM_Memory[30] = 0xA1;     // entered init
 
-    if (lis_probe_addr(0x18)) { s_addr = 0x18; }
-    else if (lis_probe_addr(0x19)) { s_addr = 0x19; }
-    else { EMULATE_EEPROM_Memory[31] = 0xEE; return false; } // probe failed
+    s_addr=0x19;
 
     EMULATE_EEPROM_Memory[31] = s_addr;
 
