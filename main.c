@@ -160,6 +160,13 @@ void POST_Routine(void);
 void LaunchTest(void);
 uint8_t PowerButton (bool OnOff);
 
+// PWM on RB11 via OC3/T3
+#define PWM_RB11_PERIOD   159   // PR3 value: 100kHz at FCY=16MHz (16000000/100000 - 1)
+void PWM_RB11_Init(void);
+void PWM_RB11_Enable(void);
+void PWM_RB11_Disable(void);
+void PWM_RB11_SetDuty(uint8_t percent);
+
  int16_t x;
  int16_t y;
  int16_t z;
@@ -194,8 +201,8 @@ int main(void)
     
     
     SYSTEM_Initialize();
-    
-    
+    PWM_RB11_Init();
+
     // Explicit changes for new versions
     POWER_BUTTON_SetDigitalInput();
     
@@ -1028,6 +1035,42 @@ void POST_Routine(void)
 
 
  
+// ---- PWM on RB11 via OC3 / T3 ----
+// T3 runs at 100kHz (PR3=159, FCY=16MHz, prescaler 1:1)
+// OC3 in PWM mode (no fault), OCTSEL=1 (T3)
+// RB11 already mapped to OC3 in pin_manager.c
+
+void PWM_RB11_Init(void)
+{
+    // T3: 16-bit, 1:1 prescaler, 100kHz
+    TMR3  = 0x0000;
+    PR3   = PWM_RB11_PERIOD;
+    T3CON = 0x8000;         // TON=1, TCKPS=1:1, internal clock
+
+    // OC3: PWM mode without fault, timer source = T3 (OCTSEL=1)
+    OC3R   = 0;             // initial duty = 0
+    OC3RS  = 0;             // shadow register = 0
+    OC3CON = 0x0000;        // disabled until PWM_RB11_Enable() called
+}
+
+void PWM_RB11_Enable(void)
+{
+    OC3CON = 0x000E;        // OCM=110 (PWM no fault), OCTSEL=1 (T3)
+}
+
+void PWM_RB11_Disable(void)
+{
+    OC3CON = 0x0000;        // OCM=000, output disabled
+}
+
+void PWM_RB11_SetDuty(uint8_t percent)
+{
+    if (percent > 100) percent = 100;
+    OC3RS = (uint16_t)((PWM_RB11_PERIOD + 1UL) * percent / 100);
+}
+
+// ---- End PWM RB11 ----
+
  void GetBattVolts(void)
  {
    

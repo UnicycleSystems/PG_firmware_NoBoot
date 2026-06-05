@@ -89,28 +89,23 @@ static TMR_OBJ tmr2_obj;
 
 void TMR2_Initialize (void)
 {
-    //TMR3 0; 
-    TMR3 = 0x00;
-    //PR3 244; 
-    PR3 = 0xF4;
-    //TMR2 0; 
+    //TMR2 0;
     TMR2 = 0x00;
-    //Period = 1 s; Frequency = 16000000 Hz; PR2 9215; 
-    PR2 = 0x23FF;
-    //TCKPS 1:1; T32 32 Bit; TON enabled; TSIDL disabled; TCS FOSC/2; TGATE disabled;
-    T2CON = 0x8008;
+    //Period = 1 s; Frequency = 16000000 Hz; Prescaler 1:256; PR2 62499;
+    PR2 = 62499;
+    //TCKPS 1:256; T32 disabled; TON enabled; TSIDL disabled; TCS FOSC/2; TGATE disabled;
+    T2CON = 0x8030;
 
-    IFS0bits.T3IF = false;
-    IEC0bits.T3IE = true;
+    IFS0bits.T2IF = false;
+    IEC0bits.T2IE = true;
 
     tmr2_obj.timerElapsed = false;
-
 }
 
-void __attribute__ ( ( interrupt, no_auto_psv ) ) _T3Interrupt ( void )
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt ( void )
 {
     DoTask = 1;
-    IFS0bits.T3IF = false;
+    IFS0bits.T2IF = false;
 }
 
 
