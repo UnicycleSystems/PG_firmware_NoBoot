@@ -824,6 +824,9 @@ void QuickAcellerometerGrabber(void)
          EMULATE_EEPROM_Memory[13] = (uint8_t)(uy);
          EMULATE_EEPROM_Memory[14] = (uint8_t)(uz >> 8);
          EMULATE_EEPROM_Memory[15] = (uint8_t)(uz);
+        
+         
+         
             /* use raw counts; scale later if needed */
         }
         else // if it fubars, then just fill with 0xFF;
@@ -982,6 +985,28 @@ void POST_Routine(void)
     
  void LaunchTest(void)
  {
+    // Accelerometer test routine 
+    int x;
+    int y;
+    int z;
+    int dummy1;
+    int dummy2;
+     
+    x=(int)(EMULATE_EEPROM_Memory[10]<<8);
+    x+=(int)EMULATE_EEPROM_Memory[11];
+    
+    y=(int)(EMULATE_EEPROM_Memory[12]<<8);
+    y+=(int)EMULATE_EEPROM_Memory[13];
+    
+    z=(int)(EMULATE_EEPROM_Memory[14]<<8);
+    z+=(int)EMULATE_EEPROM_Memory[15];
+    
+    dummy1=x+z;
+    dummy2=y+z;
+    
+    
+            
+     //Battery voltage test routine
      float voltage;
      voltage=0;
      float conversion;
@@ -998,7 +1023,7 @@ void POST_Routine(void)
      voltage=voltage*conversion;
      
      conversion=voltage/12;
-      
+     
  }
 
 
